@@ -12,7 +12,6 @@ public interface UserService {
     Optional<User> findById(Long id);
 
     User insert(User user);
-    User create(String email);
 
     void delete(Long id);
 

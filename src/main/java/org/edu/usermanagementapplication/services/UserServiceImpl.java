@@ -13,7 +13,7 @@ import java.util.Optional;
 @RequiredArgsConstructor
 public class UserServiceImpl implements UserService {
 
-    private UserRepository userRepository;
+    private final UserRepository userRepository;
 
     @Override
     public List<User> findAll() {
@@ -31,27 +31,9 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public User create(String email) {
-
-        // TODO: update null return
-        Optional<User> existingUser = userRepository.findByEmail(email);
-        if (existingUser.isPresent()) {
-            return null;
-        }
-
-        User user = new User();
-        user.setName(user.getName());
-        user.setEmail(user.getEmail());
-        user.setCpf(user.getCpf());
-        user.setPassword(user.getPassword());
-
-        return userRepository.save(user);
-    }
-
-    @Override
     public void delete(Long id) {
         User existingUser = userRepository.findById(id)
-                .orElseThrow(() -> new ResourceNotFoundException("User id not found" + id));
+                .orElseThrow(() -> new ResourceNotFoundException("User id not found " + id));
 
         userRepository.delete(existingUser);
 
@@ -61,7 +43,7 @@ public class UserServiceImpl implements UserService {
     public User update(Long id, User updatedUser) {
 
         User existingUser = userRepository.findById(id)
-                .orElseThrow(() -> new ResourceNotFoundException("User id not found" + id));
+                .orElseThrow(() -> new ResourceNotFoundException("User id not found " + id));
 
         existingUser.setName(updatedUser.getName());
         existingUser.setCpf(updatedUser.getCpf());
