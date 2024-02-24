@@ -1,16 +1,23 @@
 package org.edu.usermanagementapplication.config;
 
-import lombok.RequiredArgsConstructor;
 import org.edu.usermanagementapplication.entities.User;
 import org.edu.usermanagementapplication.repositories.UserRepository;
 import org.springframework.boot.CommandLineRunner;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Profile;
 
 import java.util.Arrays;
 
-@RequiredArgsConstructor
+@Configuration
+@Profile("test")
 public class TestConfig implements CommandLineRunner {
 
-    private final UserRepository userRepository;
+    private UserRepository userRepository;
+
+    public TestConfig(UserRepository userRepository) {
+        this.userRepository = userRepository;
+    }
+
 
     @Override
     public void run(String... args) throws Exception {
