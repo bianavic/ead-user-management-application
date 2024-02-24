@@ -22,7 +22,11 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public Optional<User> findById(Long id) {
-        return userRepository.findById(id);
+        try {
+            return userRepository.findById(id);
+        } catch (Exception e) {
+            throw new ResourceNotFoundException("User id not found: " + id);
+        }
     }
 
     @Override
@@ -32,27 +36,34 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public void delete(Long id) {
-        User existingUser = userRepository.findById(id)
-                .orElseThrow(() -> new ResourceNotFoundException("User id not found " + id));
 
-        userRepository.delete(existingUser);
+        try {
+            User existingUser = userRepository.findById(id)
+                    .orElseThrow(() -> new ResourceNotFoundException("User id not found: " + id));
+
+            userRepository.delete(existingUser);
+        } catch (Exception e) {
+            throw new ResourceNotFoundException("Error deleting user: " + id);
+        }
 
     }
 
     @Override
     public User update(Long id, User updatedUser) {
 
-        User existingUser = userRepository.findById(id)
-                .orElseThrow(() -> new ResourceNotFoundException("User id not found " + id));
+        try {
+            User existingUser = userRepository.findById(id)
+                    .orElseThrow(() -> new ResourceNotFoundException("User id not found: " + id));
 
-        existingUser.setId(id);
+            existingUser.setName(updatedUser.getName());
+            existingUser.setCpf(updatedUser.getCpf());
+            existingUser.setEmail(updatedUser.getEmail());
+            existingUser.setPassword(updatedUser.getPassword());
 
-        existingUser.setName(updatedUser.getName());
-        existingUser.setCpf(updatedUser.getCpf());
-        existingUser.setEmail(updatedUser.getEmail());
-        existingUser.setPassword(updatedUser.getPassword());
-
-        return userRepository.save(existingUser);
+            return userRepository.save(existingUser);
+        } catch (Exception e) {
+            throw new ResourceNotFoundException("Error updating user: " + id);
+        }
     }
 
 }

@@ -52,7 +52,7 @@ public class UserResource {
     public ResponseEntity<User> getByID(@PathVariable("id") Long id) {
 
         User foundUser = userService.findById(id)
-                .orElseThrow(() -> new ResourceNotFoundException("User id not found " + id));
+                .orElseThrow(() -> new ResourceNotFoundException("User id not found: " + id));
 
         return ResponseEntity.ok(foundUser);
 
