@@ -28,6 +28,32 @@ git clone git@github.com:bianavic/ead-user-management-application.git
 cd ead-user-management-application
 ```
 
+3. Build o projeto
+```bash
+mvn install
+```
+4. Rode o projeto
+```bash
+mvn spring-boot:run
+```
+
+
+### banco de dados [em memória]
+
+acesse o endereço abaixo e preencha os campos como na imagem
+```bash
+http://localhost:8081/h2-console
+```
+
+![configuração banco h2](assets/img/h2_console.png)
+
+ainda no console, adicione a query abaixo para visualizar os dados da tabela
+```bash
+SELECT * FROM TB_USER
+```
+![configuração banco h2](assets/img/h2_testdb.png)
+
+
 ## API
 
 
