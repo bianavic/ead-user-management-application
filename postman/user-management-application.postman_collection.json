@@ -1,0 +1,74 @@
+{
+	"info": {
+		"_postman_id": "55335cfb-1c51-4cf7-96f8-ecbd09a77219",
+		"name": "[ead] user management application",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"_exporter_id": "7404276",
+		"_collection_link": "https://bold-equinox-863915.postman.co/workspace/New-Team-Workspace~ac678db0-d2ef-45ef-aec6-0322200a791c/collection/7404276-55335cfb-1c51-4cf7-96f8-ecbd09a77219?action=share&source=collection_link&creator=7404276"
+	},
+	"item": [
+		{
+			"name": "ByID",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": "http://localhost:8081/users/3"
+			},
+			"response": []
+		},
+		{
+			"name": "ByID",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": \"Nero\",\n    \"cpf\": \"222\",\n    \"password\": \"222\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "http://localhost:8081/users/2"
+			},
+			"response": []
+		},
+		{
+			"name": "All",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": "http://localhost:8081/users"
+			},
+			"response": []
+		},
+		{
+			"name": "ByID",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": "http://localhost:8081/users/3"
+			},
+			"response": []
+		},
+		{
+			"name": "ADD",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": \"Test 1\",\n    \"email\": \"test1@email.com\",\n    \"cpf\": \"123\",\n    \"password\": \"123\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "http://localhost:8081/users"
+			},
+			"response": []
+		}
+	]
+}
